@@ -1,0 +1,152 @@
+html { 
+    margin:0;
+    padding:0;
+    background: url(forest.jpg) no-repeat center fixed; 
+    -webkit-background-size: cover; 
+    background-size: cover; 
+  }
+
+body{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    opacity: 90%;
+    text-align: justify;
+}
+
+header{
+    color: white;
+    background: url(bande.jpg) no-repeat center fixed; 
+    background-size: cover; /* version standardisée */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    font-size: 6em;
+    text-shadow:0 0 20px #e7f3f3,2px 3px 3px #141414, 0 0 100px #f6f8f8;color:#f8ffff;
+}
+
+.mes_articles{
+  background-color: #f1f1f1;
+  margin: 15px;
+  padding : 30px;
+  border-radius: 10px;
+  box-shadow: 6px 6px 2px 1px rgba(0, 0, 200, .1);
+}
+
+ul {
+    list-style-type: none;
+    padding: 50px;
+    margin-left: 15px;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    box-shadow: 6px 6px 2px 1px rgba(0, 0, 200, .1);
+}
+
+li {
+    display: block;
+    color: #000;
+    padding: 8px 0 8px 0px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: rgb(159, 207, 203);
+    color:rgb(10, 34, 58);
+}
+
+button {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    border: 4px double #d0e4f1;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    float: right;
+    margin-bottom : 15px;
+    }
+
+    button:hover {
+        background-color: rgb(171, 195, 204);
+    }
+
+footer{
+    margin: 15px;
+}
+
+
+#main{
+    display : flex;
+    flex-wrap: wrap;
+} 
+            
+#container{
+    display : flex;
+    flex-direction: column;
+    flex: 1 1 ;
+    flex-wrap: wrap;
+}
+
+label
+{
+	display: block;
+	width: 250px;
+	float: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table,
+td {
+    border: 1px solid orange;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
+
+
+tr:nth-child(2n){
+    color: red;
+}
+
+tr:nth-child(2n+1){
+    color: blue;
+}
+
+tr:nth-child(2n+5){
+    background-color: rgb(236, 215, 122);
+}
+
+/*table tr:nth-child(2n+1){
+    color: red;
+}*/
+
+tr:nth-child(1){
+    color: black;
+}
+
+tr:nth-child(3)> td:nth-child(2){
+    background-color:violet;
+}
+
+.navigation2{
+    display:grid;
+    background-color: rgb(171, 195, 204);
+    text-decoration: none;
+    color:#f8ffff;
+}
+
+
+@media all and (max-width: 750px) {  /* pour rÃ©duire marges sur Ã©crans de tÃ©lÃ©phone soit max 1080 px */
+        
+aside { display:none; }
+
+h1 { font-size: 2em; }
+
+}
