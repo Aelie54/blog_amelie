@@ -7,7 +7,7 @@ $error = [
     "existe" => false
 ];
 
-
+// pour verifier si formulaire bien renseigné
 function checkSignUp($pseudo, $email, $password, $user_type, $accepted)
 {
     global $error;
@@ -32,7 +32,7 @@ function checkSignUp($pseudo, $email, $password, $user_type, $accepted)
     $isInserted =  addUser ($pseudo, $email, $password, $user_type, $accepted);
 }
 
-
+//si bien renseigner, on intègre le nouvel utilisateur dans la table
 function addUser($pseudo, $email, $password, $user_type, $accepted) {
     global $connexion;
     $query = $connexion->prepare("INSERT INTO `user` (`pseudo`, `email`, `pwd`, `user_type`, `accepted`) values (:pseudo, :email, :pwd, :user_type, :accepted");
