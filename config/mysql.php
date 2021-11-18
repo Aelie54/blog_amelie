@@ -1,5 +1,6 @@
 <?php
 
+//pour connecter la db à localhost
 $username = "root";
 $password = "";
 $host = "localhost"; 
@@ -9,7 +10,6 @@ $port = "3306";
  $option =[
     \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
  ];
-
 
 $dsn = "mysql:host=$host;dbname=$db;charset=utf-8;port=$port";
 
