@@ -16,6 +16,7 @@ if (
     $_POST['accepted']
     )
 ){
+    // si oui, on donne un nom aux inputs
     $isValid = checkSignUp(
         $_POST['pseudo'],
         $_POST['email'],
@@ -25,37 +26,22 @@ if (
         $_POST['accepted']
     );
         
-    // si oui, on leur donne un nom
 
-    if ($isValid['exist']) {
-        
-        header('Location: http://localhost/blog_amelie/vue/account/signup.php');
-        //header("Location:". $domaine ."/vues/account/signup.php");
 
-        return ;
+  if ($isValid['exist']) {
+    header('Location: http://localhost/blog_amelie/vue/account/signup.php');
+    //header("Location:". $domaine ."/vues/account/signup.php");
+
+    return ;
     }
+    header('Location: http://localhost/blog_amelie/');
+    //header("Location:". $domaine ."/vues/account/successfully.php");
 
-        header('Location: http://localhost/blog_amelie/');
-        //header("Location:". $domaine ."/vues/account/successfully.php");
-
-        return;
-}
-
-if (isset( $_POST['email'], $_POST['password'])) {
-    $isValid = checkLogin(
-    $_POST['email'],
-    $_POST['password']
-);
-
-if (!$isValid['exist']) {
-    header("Location:" . $domaine . "/index.php");
     return;
 }
 
-header("Location:" . $domaine . "/vues/account/login.php?error=". $isValid['message']);
-}
 
-
+//lorsque l'utilisateur essaie de se connecter
 if (isset( $_POST['email'], $_POST['password'])) {
     $isValid = checkLogin(
         $_POST['email'],
@@ -63,7 +49,6 @@ if (isset( $_POST['email'], $_POST['password'])) {
     );
 
     if (!$isValid['exist']) {
-        
         header("Location:" . $domaine . "/index.php");
         return;
     }
