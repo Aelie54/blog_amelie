@@ -16,7 +16,7 @@
             <div id="container">
 
                 <div class="mes_articles">
-                    <form action="/model/SignUpModel.php" method="post">
+                    <form action="/controller/AccountController.php" method="post">
                         <h3> Inscris toi pour commenter </h3>
                         <br>
                             <div>

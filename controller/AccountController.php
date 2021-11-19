@@ -16,12 +16,14 @@ if (
         $_POST['pseudo'], 
         $_POST['email'],
         $_POST['password'], 
+        $_POST['confirm_password'], 
         $_POST['user_type'],
         $_POST['accepted']
     );
 
-    $error = "il faut email et message pour soumettre formulaire.</br>";
+   if ($isValid[`exist`]){
+       header("Location:". $domaine ."/vues/account/signup.php");
+   }
 
-    }
-
-?>
+   header("Location:". $domaine ."/vues/account/succesfully.php");
+}
