@@ -25,11 +25,12 @@
 
             <aside>
                 <ul>
-                    <li><a href="default.html">Home</a></li>
-                    <li><a href="news.asp">News</a></li>
-                    <li><a href="contact.asp">Contact</a></li>
+                    <li><a href="google.com">Home</a></li>
+                    <li><a href="google.com">News</a></li>
+                    <li><a href="google.com">Contact</a></li>
                     <li><a href="about.asp">About</a></li>
-                    <li><a href="connexion.html">Se connecter</a></li>
+                    <li><a href="/blog_amelie/vue/account/login.php">Se connecter</a></li>
+                    <li><a href="/blog_amelie/vue/account/signup.php">S'inscrire</a></li>
                 </ul> 
             </aside>
             

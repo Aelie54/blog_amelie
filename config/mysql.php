@@ -11,10 +11,10 @@ $port = "3306";
     \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
  ];
 
-$dsn = "mysql:host=$host;dbname=$db;charset=utf-8;port=$port";
+$dsn = "mysql:host=$host;dbname=$db;charset=utf8;port=$port";
 
 try{
-    $connexion = new \PDO($dsn, $username, $password,$option);
+    $connexion = new \PDO($dsn, $username, $password, $option);
 } catch (\PDOException $error) { 
     $message = $error->getMessage();
     var_dump($message,);

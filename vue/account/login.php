@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="monblog" content="articles blog">
   <meta name="keywords" content="blog">
-  <link rel="stylesheet" href="/asset/style2.css">
-  <script src="script.js"></script> 
+  <link rel="stylesheet" href="../../asset/style2.css">
   <title>Blog Poésie</title>
 </head>
 <body>
@@ -17,7 +16,7 @@
             <div id="container">
 
                 <div class="mes_articles">
-                    <form action="/login.php" method="post">
+                    <form action="../../controller/AccountController.php" method="post" id="form-control">
                         <h3> Connexion </h3>
                         <br>
                             <div>
@@ -28,6 +27,9 @@
                                 <label for="mot_de_passe">Pasword :</label>
                                 <input type="password" id="mdp" name="password" required="required">
                             </div>
+                            <div>
+                            <small><?php  if( isset($_GET['error'])) { echo $_GET['error'];  } ?></small>
+                            </div>
                             <div class="boutons_valider">
                                 <br><input class="Valider"
                            type="submit"
@@ -35,7 +37,7 @@
                             </div>
                     </form>
                     <br>
-                    <a href="inscription.html">Je créé mon compte</a>
+                    <a href="/blog_amelie/vue/account/signup.php">Je créé mon compte</a>
                     <br>
                 </div>
 
