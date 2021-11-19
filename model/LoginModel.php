@@ -17,9 +17,11 @@ $error = [
 function checkLogin($email, $password)
 {
     global $error;
+    //On sécurise les données d'email et password
     $email =  htmlspecialchars(strip_tags($email));
     $password =  htmlspecialchars(strip_tags($password));
 
+    //si l'un des champs est vide on retourne une erreur
     if ( empty($email) || empty($password)) {
         $error["message"] .= "Veuillez remplir tous les champs. Merci ! </br>";
         $error["exist"] = true;
@@ -27,6 +29,7 @@ function checkLogin($email, $password)
         return $error;
     }
 
+    //on vérifie que l'email renseigné a bien un format email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error["message"] .= "Saisissez un adresse email valide";
         $error["exist"] = true;
@@ -34,13 +37,14 @@ function checkLogin($email, $password)
         return $error;
     }
 
+    //on appelle la fonction : 
     getPasswordUser($email, $password);
-
 
     return $error;
 }
 
 
+//on va chercher dans la table le password pour lequel l'email renseigné = email de la database
 function getPasswordUser($email, $password){
 
     global $connexion;
@@ -58,27 +62,39 @@ function getPasswordUser($email, $password){
 
     $aDatas = $query->fetchAll();
 
+    //une fois trouvé on appelle la fonction pour vérifier les deux mots de passe
     verifyPassword($aDatas, $password);
 
     return $error ;
 
 }
 
-function verifyPassword($aDatas, $password){
 
+//on verifie que le password existe par cette fonction
+function verifyPassword($aDatas, $password)
+{
     global $error;
     $aDatas = $aDatas[0];
 
-    if(!isset($aDatas [`password`])){
+    //si le password n'existe pas...
+    if (!isset($aDatas['password'])) {
+        $error['message'] .= "Aucun utilisateur n'a était trouvé";
+        $error['exist'] = true;
 
-        $error["message"] .= "l'utilisateur n'est pas trouvé";
-        $error["exist"] = true ;
-
-        return $error ;s
+        return $error;
     }
-
     
+    //si le mot de passe est bien celui attendu
+    $passwordVerif = password_verify($password, $aDatas['password']);
+
+    if (!$passwordVerif) {
+        $error['message'] .= 'Mot de passe incorrect';
+        $error['exist'] = true;
+
+        return $error;
+    }
 }
+
 
 
 
