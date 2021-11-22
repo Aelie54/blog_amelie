@@ -125,60 +125,60 @@ function passwordHash($password) { //fonction pour hacher le password
 
             <form action="?type=add" method="post">
 
-            <div class="mes_articles">        
+                <div class="mes_articles">        
 
-                    <h3> Inscris toi pour commenter </h3><br>
-                        
-                    <div>
-                        <label for="pseudo">Pseudo :</label>
-                        <input type="text" required="required" pattern="[a-Z_0-9]{4,8}" id="pseudo" name="pseudo"
-                                title="Que des lettres minuscules et chiffres">
-                    </div>
-
-                    <div>
-                        <label for="email">Email :</label>
-                        <input type="email" name="email" id="email" />
-                    </div>
-
-                    <div>
-                        <label for="password">Mot de passe : </label>
-                        <input type="password" name="password" id="password" />
-                    </div>
-
-                    <div>
-                        <label for="comfirm_password">Confirmer votre mot de passe </label>
-                        <input type="password" name="comfirm_password" id="comfirm_password" />
-                    </div>
+                        <h3> Inscris toi pour commenter </h3><br>
+                            
+                        <div>
+                            <label for="pseudo">Pseudo :</label>
+                            <input type="text" required="required" pattern="[a-Z_0-9]{4,8}" id="pseudo" name="pseudo"
+                                    title="Que des lettres minuscules et chiffres">
+                        </div>
 
                         <div>
-                            <label for="user_type">Choissisez votre catégorie </label>
-                            <select name="user_type" id="user_type">
-                                <optgroup label="Administrateurs">
-                                    <option value="Admin">Admin</option>
-                                    <option value="Moderator">Moderator</option>
-                                </optgroup>
-                                <optgroup label="Clients">
-                                    <option value="Auteur">Auteur</option>
-                                    <option value="Éditeur">Éditeur</option>
-                                    <option value="Maison éditorial">Maison éditorial</option>
-                                    <option value="Imprésario">Imprésario</option>
-                                </optgroup>
-                            </select>
-                        </div><br><br>
+                            <label for="email">Email :</label>
+                            <input type="email" name="email" id="email" />
+                        </div>
 
-                        <fieldset>
-                            <legend>J'accepte que mes données soient exploitées</legend>
+                        <div>
+                            <label for="password">Mot de passe : </label>
+                            <input type="password" name="password" id="password" />
+                        </div>
+
+                        <div>
+                            <label for="comfirm_password">Confirmer votre mot de passe </label>
+                            <input type="password" name="comfirm_password" id="comfirm_password" />
+                        </div>
+
                             <div>
-                                <label for="accepted">Oui, je l'autorise</label>
-                                <input type="checkbox" name="accepted" id="accepted" required>
-                            </div>
-                        </fieldset>
+                                <label for="user_type">Choissisez votre catégorie </label>
+                                <select name="user_type" id="user_type">
+                                    <optgroup label="Administrateurs">
+                                        <option value="Admin">Admin</option>
+                                        <option value="Moderator">Moderator</option>
+                                    </optgroup>
+                                    <optgroup label="Clients">
+                                        <option value="Auteur">Auteur</option>
+                                        <option value="Éditeur">Éditeur</option>
+                                        <option value="Maison éditorial">Maison éditorial</option>
+                                        <option value="Imprésario">Imprésario</option>
+                                    </optgroup>
+                                </select>
+                            </div><br><br>
 
-                    <div class="boutons_valider">
-                        <br><input type="submit" value="S'inscrire" />
+                            <fieldset>
+                                <legend>J'accepte que mes données soient exploitées</legend>
+                                <div>
+                                    <label for="accepted">Oui, je l'autorise</label>
+                                    <input type="checkbox" name="accepted" id="accepted" required>
+                                </div>
+                            </fieldset>
+
+                        <div class="boutons_valider">
+                            <br><input type="submit" value="S'inscrire" />
                     </div>
         
-        </form>
+            </form>
 
             <br><a href="login.php">Je suis déjà inscrit</a><br>
 

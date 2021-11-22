@@ -1,39 +1,14 @@
 <?php
 session_start();
-require_once("./config/config.php"); //configuration php  ./config/config.php
-require_once("./config/mysql.php"); //connexion à la bdd  /config/mysql.php
+require_once("../blog_amelie/config/config.php"); ///config/config.php
+require_once("../blog_amelie/config/mysql.php");
 
-/*CONNEXION BDD dejà dans un fichier voir require
-{
-
-        $username = "root";
-        $password = ""; 
-        $host = "localhost"; //localhost 
-        $db = "blog";
-        $port = "3306";
-
-        $option = [
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
-        ];
-
-        $dsn = "mysql:host=$host;dbname=$db;charset=utf8;port=$port";
-
-        try {
-            $connexion = new \PDO($dsn, $username, $password, $option);
-        } catch (\PDOException $error) {
-            $message = $error->getMessage();
-            var_dump($message);
-            die("Erreur lors de ma connexion PDO");
-        }
-
-}*/
-
-//CONTROLLER
 $error = [
     "message" => "",
     "exist" => false
 ];
 
+//CONTROLLER
 if (isset($_GET['type'])) {
     $type = $_GET['type'];
     
@@ -43,15 +18,14 @@ if (isset($_GET['type'])) {
             $_POST['user_id'],
             $_POST['title'],
             $_POST['content'],
-            $_POST['categorie'],
+            $_POST['categorie']
             )) {
                 header("Location:" . $domaine . "/vues/article/add.php?error=un parametre manque à la requete");
                 return;
             }
             
             $isValid = checkAddParams($_POST['user_id'], $_POST['title'],  $_POST['content'], $_POST['categorie']);
-            
-        } 
+        }
 }   
 
 //MODEL
@@ -72,63 +46,57 @@ function checkAddParams($user_id, $title, $content, $categorie) {
     insertArticle($user_id, $title, $content, $categorie);
 }
 
-        function insertArticle($user_id, $title, $content, $categorie) {
-            global $connexion;
-            global $domaine;
-            $query = $connexion->prepare("INSERT INTO `article` (`title`, `content`, `user_id`) VALUES (:title, :content, :user_id) ");
-            $reponse = $query->execute(['title' => $title, 'content' => $content, 'user_id' => $user_id]);
+function insertArticle($user_id, $title, $content, $categorie) {
+    global $connexion;
+    global $domaine;
+    $query = $connexion->prepare("INSERT INTO `article` (`title`, `content`, `user_id`, `categorie`) VALUES (:title, :content, :user_id, :categorie);");
+    $reponse = $query->execute(['title' => $title, 'content' => $content, 'user_id' => $user_id, 'categorie' => $categorie ]);
 
-            if($reponse) {
-            header("location: ".$domaine. "/vues/articles/articles.php");
-            return;
-            } else {
-                header("Location:" . $domaine . "/vues/article/add.php?error=une erreur est survenu lors de l'ajout de l'article");
-                return;
-            }
-        }
+    if($reponse) {
+        header("location: http://localhost/blog_amelie/vue/articles/article.php");
+        return;
+     } else {
+        header("Location: http://localhost/blog_amelie/vue/articles/add.php ");
+        return;
+    }
+}
+?>
 
-//formulaire
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="monblog" content="articles blog">
+    <meta name="keywords" content="blog">
+    <link rel="stylesheet" href="../blog_amelie/asset/style2.css">
+    <title>Blog Poésie</title>
+    <head></head>
+    <header><h1>Le blog Poésie d'Amélie</h1></header>
+    
+    <main id="main" >     
+        <div id="container">
+            <form action="?type=add" method="post" id="form-control">
+            <div class="mes_articles">  
 
-        ?>
-        <!DOCTYPE html>
-        <html>
-
-        <head>
-        <!doctype html>
-        <html lang="fr">
-        <head>
-        <meta charset="utf-8">
-        <meta name="monblog" content="articles blog">
-        <meta name="keywords" content="blog">
-        <link rel="stylesheet" href="./asset/style2.css">
-        <script src="script.js"></script> 
-        <title>Blog Poésie</title>
-        </head>
-        </head>
-
-<body>
-
-<main id="main" > 
-    <div id="container">
-        <div class="mes_articles">
+                <h3> Ajouter un article </h3><br>
 
                 <form action="?type=add" method="POST" id="form-control">
                     <input type="hidden" name="user_id" id="user_id" value="<?php if(isset($_SESSION['user']['id'])) { echo $_SESSION['user']['id']; } ?>">
                     <div>
                         <label for="title">Titre</label>
                         <input type="text" name="title" id="title" required />
-                    </div><br>
+                    </div>
                     <div>
                         <label for="content">Ici le contenu de l'article </label>
-                        <textarea name="content" id="content" required></textarea><br>
-                    </div><br>
+                        <textarea name="content" id="content" required></textarea>
+                    </div>
                     <div>
                         <select name="categorie" id="categorie">
                             <option value="1">Héros</option>
                             <option value="2">Avengers</option>
                             <option value="3">Méchants</option>
                         </select>
-                    </div><br>
+                    </div>
                     <div id="login_button">
                         <input type="submit" value="Ajouter l'article" />
                     </div>
@@ -139,13 +107,10 @@ function checkAddParams($user_id, $title, $content, $categorie) {
                             } ?>
                         </small>
                     </span>
-                </form>
+                    <br><a href="/blog_amelie/vue/account/signup.php">Je créé mon compte</a>
+            </div>
         </div>
-    </div>
-</main>
-
-</body>
+        </form>  
+    </main>
 
 </html>
-
-

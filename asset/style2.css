@@ -26,13 +26,6 @@ h1{
     text-shadow:0 0 20px #e7f3f3,2px 3px 3px #141414, 0 0 100px #f6f8f8;color:#f8ffff;
 }
 
-.mes_articles{
-  background-color: #f1f1f1;
-  margin: 15px;
-  padding : 30px;
-  border-radius: 10px;
-  box-shadow: 6px 6px 2px 1px rgba(0, 0, 200, .1);
-}
 
 ul {
     list-style-type: none;
@@ -90,6 +83,18 @@ footer{
     flex-wrap: wrap;
 }
 
+.mes_articles{
+    background-color: #f1f1f1;
+    margin: 15px;
+    padding : 30px;
+    border-radius: 10px;
+    box-shadow: 6px 6px 2px 1px rgba(0, 0, 200, .1);
+  }
+  
+  /*#add{
+    display : flex;
+    width: 1000%;
+  }*/
 label
 {
 	display: block;

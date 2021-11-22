@@ -25,10 +25,10 @@
 
             <aside>
                 <ul>
-                    <li><a href="google.com">Home</a></li>
-                    <li><a href="google.com">News</a></li>
-                    <li><a href="google.com">Contact</a></li>
-                    <li><a href="about.asp">About</a></li>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">News</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">About</a></li>
                     <li><a href="/blog_amelie/vue/account/login.php">login</a></li>
                     <li><a href="login_once.php">login_once</a></li>
                     <li><a href="/blog_amelie/vue/account/signup.php">Signup</a></li>

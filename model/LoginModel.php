@@ -1,5 +1,8 @@
 <?php
-require_once("../config/mysql.php"); //../config/mysql.php
+session_start();
+require_once("../config/mysql.php");
+//require_once("./config/mysql.php"); 
+
 
 $error = [
     "message" => "",
@@ -58,7 +61,6 @@ function getPasswordUser($email, $password){
     verifyPassword($aDatas, $password);
 
     return $error ;
-
 }
 
 
