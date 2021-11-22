@@ -2,14 +2,6 @@
 <?php
 require_once("../config/mysql.php");
 
-if (!isset($_SERVER["HTTP_REFERER"])) {
-    die("access restricted");
-}
-
-if(! $_SERVER["HTTP_REFERER"] === "AccountController.php") {
-    die("access restricted");
-}
-
 $error = [
     "message" => "",
     "exist" => false

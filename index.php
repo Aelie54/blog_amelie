@@ -29,8 +29,12 @@
                     <li><a href="google.com">News</a></li>
                     <li><a href="google.com">Contact</a></li>
                     <li><a href="about.asp">About</a></li>
-                    <li><a href="/blog_amelie/vue/account/login.php">Se connecter</a></li>
-                    <li><a href="/blog_amelie/vue/account/signup.php">S'inscrire</a></li>
+                    <li><a href="/blog_amelie/vue/account/login.php">login</a></li>
+                    <li><a href="login_once.php">login_once</a></li>
+                    <li><a href="/blog_amelie/vue/account/signup.php">Signup</a></li>
+                    <li><a href="signup_once.php">signup_once</a></li>
+                    <li><a href="add_once.php">Add_once</a></li>
+                    <li><a href="/blog_amelie/vue/articles/add.php">Add</a></li>
                 </ul> 
             </aside>
             

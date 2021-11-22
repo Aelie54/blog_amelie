@@ -1,13 +1,5 @@
 <?php
-require_once("../config/mysql.php");
-
-if (!isset($_SERVER["HTTP_REFERER"])) {
-    die("access restricted");
-}
-
-if(! $_SERVER["HTTP_REFERER"] === "AccountController.php") {
-    die("access restricted");
-}
+require_once("../config/mysql.php"); //../config/mysql.php
 
 $error = [
     "message" => "",
@@ -93,6 +85,14 @@ function verifyPassword($aDatas, $password)
 
         return $error;
     }
+
+    createSession($aDatas);
+
+}
+
+function createSession($aDatas){
+    $_SESSION['user']['id'] = $aDatas['id'];
+    $_SESSION['user']['pseudo'] = $aDatas['pseudo'];
 }
 
 

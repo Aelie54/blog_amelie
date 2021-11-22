@@ -20,8 +20,8 @@
                         <h3> Connexion </h3>
                         <br>
                             <div>
-                                <label for="pseudo">Email :</label>
-                                <input pattern="[a-z_0-9]" id="pseudo" name="email" required="required" title="Que des lettres minuscules et chiffres">
+                                <label for="email">Email :</label>
+                                <input id="email" name="email" required="required">
                             </div>
                             <div>
                                 <label for="mot_de_passe">Pasword :</label>
