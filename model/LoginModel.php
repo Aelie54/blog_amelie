@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("../config/mysql.php");
+require_once("./");
 //require_once("./config/mysql.php"); 
 
 
@@ -8,6 +9,9 @@ $error = [
     "message" => "",
     "exist" => false
 ];
+
+
+
 
 function checkLogin($email, $password)
 {
@@ -93,6 +97,8 @@ function verifyPassword($aDatas, $password)
 }
 
 function createSession($aDatas){
+    var_dump($aDatas) ;
+    die("jesaispas");
     $_SESSION['user']['id'] = $aDatas['id'];
     $_SESSION['user']['pseudo'] = $aDatas['pseudo'];
 }

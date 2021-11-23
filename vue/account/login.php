@@ -28,7 +28,8 @@
                                 <input type="password" id="mdp" name="password" required="required">
                             </div>
                             <div>
-                            <small><?php  if( isset($_GET['error'])) { echo $_GET['error'];  } ?></small>
+                            <small><?php  if( isset($_GET['error'])) 
+                                            { echo $_GET['error'];} ?></small>
                             </div>
                             <div class="boutons_valider">
                                 <br><input class="Valider"

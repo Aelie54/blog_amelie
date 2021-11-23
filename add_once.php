@@ -1,7 +1,9 @@
 <?php
 session_start();
-require_once("../blog_amelie/config/config.php"); ///config/config.php
+require_once("../blog_amelie/config/config.php");
 require_once("../blog_amelie/config/mysql.php");
+
+
 
 $error = [
     "message" => "",
@@ -56,7 +58,7 @@ function insertArticle($user_id, $title, $content, $categorie) {
         header("location: http://localhost/blog_amelie/vue/articles/article.php");
         return;
      } else {
-        header("Location: http://localhost/blog_amelie/vue/articles/add.php ");
+        header("Location: http://localhost/blog_amelie/vue/articles/add.php");
         return;
     }
 }
@@ -100,11 +102,14 @@ function insertArticle($user_id, $title, $content, $categorie) {
                     <div id="login_button">
                         <input type="submit" value="Ajouter l'article" />
                     </div>
+
                     <span>
                         <small id="error">
+
                             <?php if (isset($_GET['error'])) {
                                 echo $_GET['error'];
                             } ?>
+
                         </small>
                     </span>
                     <br><a href="/blog_amelie/vue/account/signup.php">Je créé mon compte</a>

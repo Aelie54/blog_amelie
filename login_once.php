@@ -95,7 +95,7 @@ function getPasswordUser($email, $password){
     global $connexion;
     global $error;
 
-    $query = $connexion->prepare("SELECT `password` FROM `user` WHERE email =:email;");
+    $query = $connexion->prepare("SELECT `password`, `id`, `pseudo` FROM `user` WHERE email =:email;");
     $response = $query->execute(["email" => $email]);
 
     if (!$response) {
@@ -118,6 +118,7 @@ function getPasswordUser($email, $password){
 //on verifie que le password existe par cette fonction
 function verifyPassword($aDatas, $password)
 {
+
     global $error;
     $aDatas = $aDatas[0];
 
@@ -143,6 +144,7 @@ function verifyPassword($aDatas, $password)
 }
 
 function createSession($aDatas){
+
     $_SESSION['user']['id'] = $aDatas['id'];
     $_SESSION['user']['pseudo'] = $aDatas['pseudo'];
 }

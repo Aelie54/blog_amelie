@@ -1,4 +1,9 @@
+<?php session_start();
+//session_destroy();
+?>
+
 <!doctype html>
+
 <html lang="fr">
 <head>
   <meta charset="utf-8">
@@ -35,6 +40,7 @@
                     <li><a href="signup_once.php">signup_once</a></li>
                     <li><a href="add_once.php">Add_once</a></li>
                     <li><a href="/blog_amelie/vue/articles/add.php">Add</a></li>
+                    <li><a href="/blog_amelie/vue/articles/add.php">Log out</a></li>
                 </ul> 
             </aside>
             

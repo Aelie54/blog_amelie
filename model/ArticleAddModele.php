@@ -46,7 +46,6 @@ if (isset($_GET['type'])) {
 }   
 
 //MODEL
-
 function checkAddParams($user_id, $title, $content, $categorie) {
     global $error;
     $user_id =  htmlspecialchars(strip_tags($user_id));
