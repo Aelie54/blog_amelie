@@ -97,8 +97,8 @@ function verifyPassword($aDatas, $password)
 }
 
 function createSession($aDatas){
-    var_dump($aDatas) ;
-    die("jesaispas");
+    //var_dump($aDatas) ;
+    //die("jesaispas");
     $_SESSION['user']['id'] = $aDatas['id'];
     $_SESSION['user']['pseudo'] = $aDatas['pseudo'];
 }
