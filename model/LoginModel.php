@@ -1,7 +1,6 @@
 <?php
-session_start();
+//session_start();
 require_once("../config/mysql.php");
-require_once("./");
 //require_once("./config/mysql.php"); 
 
 

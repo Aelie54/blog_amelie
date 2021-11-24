@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("./config/config.php");
-require_once("./model/LoginModel.php");
+//require_once("./config/config.php");
+//require_once("./model/LoginModel.php");
 require_once("./config/mysql.php");
 
 $error = false ;

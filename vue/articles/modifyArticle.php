@@ -22,16 +22,7 @@ $aArticles = getArticle($_GET['id']);
 <body>
 
     <header><h1>Le blog Poésie d'Amélie</h1></header>
-    <!--  
-            <nav id="navigation2">
-    <a href="default.html">Home</a>
-    <a href="news.asp">News</a>
-    <a href="about.asp">About</a>
-    <a href="connexion.html">Se connecter</a> 
-            </nav>
-        "-->
-
-
+ 
 <main id="main" >     
 
             <aside>
@@ -55,14 +46,11 @@ $aArticles = getArticle($_GET['id']);
 
                 <div class="mes_articles">
 
-                <h2><?php echo $aArticles['title'] ;?></h2>
+                <h2>formulaire</h2>
 
-                   <p> 
-                   <?php echo $aArticles['content'] ;?>
-                    </p>
 
                    <button> 
-                       <a href="/blog_amelie/vue/articles/modifyArticle.php"> Modifier </a>
+                       <a href="blog_amelie/vue/articles/modifyArticle.php"> Modifier </a>
                     </button>
                 
             </div>

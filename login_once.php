@@ -1,15 +1,15 @@
 <?php
 session_start();
 require_once("./config/config.php"); //configuration php
-require_once("./config/mysql.php"); //connexion à la bdd
+//require_once("./config/mysql.php"); connexion à la bdd
 
-/*CONNEXION BDD dejà dans un fichier voir require
-{
+//CONNEXION BDD dejà dans un fichier voir require
+
 
         $username = "root";
         $password = ""; 
         $host = "localhost"; //localhost 
-        $db = "blog";
+        $db = "BLOG";
         $port = "3306";
 
         $option = [
@@ -25,8 +25,6 @@ require_once("./config/mysql.php"); //connexion à la bdd
             var_dump($message);
             die("Erreur lors de ma connexion PDO");
         }
-
-}*/
 
 //CONTROLLER
 if (isset( $_POST['email'], $_POST['password'])) {
@@ -45,14 +43,6 @@ if (isset( $_POST['email'], $_POST['password'])) {
 
 //MODEL
 require_once("./config/mysql.php");
-
-if (!isset($_SERVER["HTTP_REFERER"])) {
-    die("access restricted");
-}
-
-if(! $_SERVER["HTTP_REFERER"] === "AccountController.php") {
-    die("access restricted");
-}
 
 $error = [
     "message" => "",

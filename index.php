@@ -40,7 +40,8 @@
                     <li><a href="signup_once.php">signup_once</a></li>
                     <li><a href="add_once.php">Add_once</a></li>
                     <li><a href="/blog_amelie/vue/articles/add.php">Add</a></li>
-                    <li><a href="/blog_amelie/vue/articles/add.php">Log out</a></li>
+                    <li><a href="/blog_amelie/vue/articles/articles.php">Articles</a></li> <!-- fonctionne pas -->
+                    <li><a href="">Log out</a></li>
                 </ul> 
             </aside>
             
