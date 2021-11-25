@@ -3,7 +3,10 @@ session_start();
 require_once("../../config/mysql.php");
 require_once('../../helpers/ArticlesHelper.php');
 
-$aArticles = getArticle($_GET['id']);
+if (!isset($_GET['id'])) {
+    die('Il manque un paramètre');
+}
+$aArticle = getArticle($_GET['id']);
 
 
 ?>
@@ -22,14 +25,6 @@ $aArticles = getArticle($_GET['id']);
 <body>
 
     <header><h1>Le blog Poésie d'Amélie</h1></header>
-    <!--  
-            <nav id="navigation2">
-    <a href="default.html">Home</a>
-    <a href="news.asp">News</a>
-    <a href="about.asp">About</a>
-    <a href="connexion.html">Se connecter</a> 
-            </nav>
-        "-->
 
 
 <main id="main" >     
@@ -46,7 +41,7 @@ $aArticles = getArticle($_GET['id']);
                     <li><a href="signup_once.php">signup_once</a></li>
                     <li><a href="add_once.php">Add_once</a></li>
                     <li><a href="/blog_amelie/vue/articles/add.php">Add</a></li>
-                    <li><a href="/blog_amelie/vue/articles/articles.php">Articles</a></li> <!-- fonctionne pas -->
+                    <li><a href="/blog_amelie/vue/articles/articles.php">Articles</a></li> 
                     <li><a href="">Log out</a></li>
                 </ul> 
             </aside>
@@ -55,14 +50,18 @@ $aArticles = getArticle($_GET['id']);
 
                 <div class="mes_articles">
 
-                <h2><?php echo $aArticles['title'] ;?></h2>
+                <h2><?php echo $aArticle['title'] ;?></h2>
 
                    <p> 
-                   <?php echo $aArticles['content'] ;?>
+                   <?php echo $aArticle['content'] ;?>
                     </p>
 
                    <button> 
-                       <a href="/blog_amelie/vue/articles/modifyArticle.php"> Modifier </a>
+                  
+                   <?php
+                    echo '<a href="/blog_amelie/vue/articles/modifyArticle.php?id=' . $aArticle['id'] . '"> Modifier</a>' 
+                   ?>
+
                     </button>
                 
             </div>

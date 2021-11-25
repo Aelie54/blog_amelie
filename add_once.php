@@ -2,7 +2,7 @@
 session_start();
 require_once("../blog_amelie/config/config.php");
 require_once("../blog_amelie/config/mysql.php");
-
+var_dump($_SESSION); die ;
 
 
 $error = [
@@ -27,16 +27,19 @@ if (isset($_GET['type'])) {
             }
             
             $isValid = checkAddParams($_POST['user_id'], $_POST['title'],  $_POST['content'], $_POST['categorie']);
+        
         }
 }   
 
 //MODEL
 function checkAddParams($user_id, $title, $content, $categorie) {
     global $error;
+
     $user_id =  htmlspecialchars(strip_tags($user_id));
     $title =  htmlspecialchars(strip_tags($title));
     $content =  htmlspecialchars(strip_tags($content));
     $categorie =  htmlspecialchars(strip_tags($categorie));
+
 
     if ( empty($user_id) || empty($title) ||  empty($content) || empty($categorie)) {
         $error["message"] .= "Veuillez remplir tous les champs. Merci ! </br>";
@@ -46,13 +49,16 @@ function checkAddParams($user_id, $title, $content, $categorie) {
     }
 
     insertArticle($user_id, $title, $content, $categorie);
+    
 }
+
 
 function insertArticle($user_id, $title, $content, $categorie) {
     global $connexion;
     global $domaine;
     $query = $connexion->prepare("INSERT INTO `article` (`title`, `content`, `user_id`, `categorie`) VALUES (:title, :content, :user_id, :categorie);");
     $reponse = $query->execute(['title' => $title, 'content' => $content, 'user_id' => $user_id, 'categorie' => $categorie ]);
+
 
     if($reponse) {
         header("location: http://localhost/blog_amelie/vue/articles/article.php");

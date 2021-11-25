@@ -48,7 +48,7 @@ function getPasswordUser($email, $password){
     global $connexion;
     global $error;
 
-    $query = $connexion->prepare("SELECT `password` FROM `user` WHERE email =:email;");
+    $query = $connexion->prepare("SELECT `password`, `pseudo`,`id` FROM `user` WHERE email =:email;");
     $response = $query->execute(["email" => $email]);
 
     if (!$response) {
@@ -99,6 +99,7 @@ function createSession($aDatas){
     //var_dump($aDatas) ;
     //die("jesaispas");
     $_SESSION['user']['id'] = $aDatas['id'];
+    //var_dump($aDatas); die();
     $_SESSION['user']['pseudo'] = $aDatas['pseudo'];
 }
 

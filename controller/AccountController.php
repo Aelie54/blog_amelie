@@ -3,8 +3,6 @@ require_once("../config/config.php");
 require_once("../model/SignUpModel.php");
 require_once("../model/LoginModel.php");
 
-$error = false ;
-
 //le formulaire est-il bien renseigner?
 if ( 
     isset(

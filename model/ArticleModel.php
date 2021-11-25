@@ -2,9 +2,6 @@
 require_once("../config/mysql.php");
 require_once("../config/config.php");
 
-print(__DIR__);
-die('tt');
-
 function checkAddParams($user_id, $title, $content, $categorie) {
     global $error;
     $user_id =  htmlspecialchars(strip_tags($user_id));
@@ -51,6 +48,7 @@ function insertArticle($user_id, $title, $content, $categorie) : array {
 function modifyArticle($article_id, $title, $content, $user_id) {
     global $connexion;
     global $error;
+
     try {
         $query = $connexion->prepare("UPDATE `article` SET `title` = :title , `content`= :content  WHERE `user_id` = :user_id AND `id`= :article_id ");
         $response = $query->execute(['article_id' => $article_id, 'content' => $content, 'title' => $title, 'user_id' => $user_id]);

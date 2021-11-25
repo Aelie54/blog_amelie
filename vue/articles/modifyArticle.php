@@ -3,7 +3,11 @@ session_start();
 require_once("../../config/mysql.php");
 require_once('../../helpers/ArticlesHelper.php');
 
-$aArticles = getArticle($_GET['id']);
+if (!isset($_GET['id'])) {
+    die('Il manque un paramètre');
+}
+
+$aArticle = getArticle($_GET['id']);
 
 
 ?>
@@ -16,7 +20,6 @@ $aArticles = getArticle($_GET['id']);
   <meta name="monblog" content="articles blog">
   <meta name="keywords" content="blog">
   <link rel="stylesheet" href="../../asset/style2.css">
-  <script src="script.js"></script> 
   <title>Blog Poésie</title>
 </head>
 <body>
@@ -37,7 +40,7 @@ $aArticles = getArticle($_GET['id']);
                     <li><a href="signup_once.php">signup_once</a></li>
                     <li><a href="add_once.php">Add_once</a></li>
                     <li><a href="/blog_amelie/vue/articles/add.php">Add</a></li>
-                    <li><a href="/blog_amelie/vue/articles/articles.php">Articles</a></li> <!-- fonctionne pas -->
+                    <li><a href="/blog_amelie/vue/articles/articles.php">Articles</a></li>
                     <li><a href="">Log out</a></li>
                 </ul> 
             </aside>
@@ -46,12 +49,48 @@ $aArticles = getArticle($_GET['id']);
 
                 <div class="mes_articles">
 
-                <h2>formulaire</h2>
+                <h2>Modification d'un Article</h2>
 
+                <form action="../../controller/ArticleController.php?action=modify" method="POST" id="form-control">
+            
+                <input type="hidden" name="article_id" id="article_id" value="<?=$aArticle['id']?>">
 
-                   <button> 
-                       <a href="blog_amelie/vue/articles/modifyArticle.php"> Modifier </a>
-                    </button>
+            <div>
+                <label for="title">Modifier le Titre :</label>
+                <input type="text" name="title" id="title" required value="<?=$aArticle['title']?>" />
+            </div>
+
+            <div>
+                <label for="content" >Modifier le contenu de l'article :</label>
+            </div>
+
+            <div>
+                <textarea type="text" name="content" id="content" required > 
+                    <?=$aArticle['content']?>
+                </textarea>
+            </div>
+
+            <!-- <div>
+                <select name="categorie" id="categorie">
+                    <option value="1">Héros</option>
+                    <option value="2">Avengers</option>
+                    <option value="3">Méchants</option>
+                </select>
+            </div> -->
+
+            <div id="login_button">
+                <input type="submit" value="Modifier l'article" />
+            </div>
+
+            <span>
+                <small id="error">
+                    <?php if (isset($_GET['error'])) {
+                        echo $_GET['error'];
+                    } ?>
+                </small>
+            </span>
+
+        </form>
                 
             </div>
 </main>

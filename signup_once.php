@@ -4,8 +4,6 @@ session_start();
 //require_once("./model/LoginModel.php");
 require_once("./config/mysql.php");
 
-$error = false ;
-
 if ( //le formulaire est-il bien renseigner?
     isset(
         $_POST['pseudo'], 
