@@ -47,23 +47,61 @@ $aArticles = getArticles();
                 </ul> 
             </aside>
 
-<div id="container">
+            <div id="container">
 
-            <?php
-            if (isset($aArticles['exist'])) {
-                echo $_GET['datas']['message'];
-            }
+<?php
 
-            echo '<div class="mes_articles"> <h3>Liste des articles:</h3>';
-            foreach ($aArticles as $key => $array_element) {
-             echo '<a href="/blog_amelie/vue/articles/article.php?id=' . $array_element['id'] . '"><br>' . $array_element["title"] . '</a>';
-             }echo "</div>";
-           
-            foreach ($aArticles as $key => $array_element) {
-                    echo '<div class="mes_articles"><h3>'. $array_element['title'] . '</h3><p>'. $array_element['title'] .'<br>'. $array_element['categorie'].'</p></div>';
-            }
+if (isset($aArticles['exist'])) {
+    echo $_GET['datas']['message'];
+}
 
-            ?>
+echo '<div class="mes_articles"> <h3>Liste des articles de cat1:</h3>';
+
+foreach ($aArticles as $key => $array_element) {
+    if($array_element['categorie']=="cat 1"){
+        echo '<a href="/blog_amelie/vue/articles/article.php?id=' . $array_element['id'] . '"><br>' . $array_element["title"] . '</a>';
+    }
+}
+echo "</div>";
+
+
+echo '<div class="mes_articles"> <h3>Liste des articles de cat2:</h3>';
+foreach ($aArticles as $key => $array_element) {
+    if($array_element['categorie']=="cat 2"){
+        echo '<a href="/blog_amelie/vue/articles/article.php?id=' . $array_element['id'] . '"><br>' . $array_element["title"] . '</a>';
+    }
+}
+echo "</div>";
+
+
+echo '<div class="mes_articles"> <h3>Liste des articles de cat3:</h3>';
+foreach ($aArticles as $key => $array_element) {
+    if($array_element['categorie']=="cat 3"){
+        echo '<a href="/blog_amelie/vue/articles/article.php?id=' . $array_element['id'] . '"><br>' . $array_element["title"] . '</a>';
+    }
+}
+echo "</div>";
+
+
+echo '<div class="mes_articles"> <h3>Liste des articles de cat4:</h3>';
+foreach ($aArticles as $key => $array_element) {
+    if($array_element['categorie']=="cat 4"){
+        echo '<a href="/blog_amelie/vue/articles/article.php?id=' . $array_element['id'] . '"><br>' . $array_element["title"] . '</a>';
+    }
+}
+echo "</div>";
+
+
+echo '<div class="mes_articles"> <h3>Liste des articles de cat5:</h3>';
+foreach ($aArticles as $key => $array_element) {
+    if($array_element['categorie']=="cat 5"){
+        echo '<a href="/blog_amelie/vue/articles/article.php?id=' . $array_element['id'] . '"><br>' . $array_element["title"] . '</a>';
+    }
+}
+echo "</div>";
+
+
+?>
 </div>
 
 </main>

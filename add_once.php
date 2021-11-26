@@ -2,7 +2,7 @@
 session_start();
 require_once("../blog_amelie/config/config.php");
 require_once("../blog_amelie/config/mysql.php");
-var_dump($_SESSION); die ;
+//var_dump($_SESSION); die ;
 
 
 $error = [
@@ -22,7 +22,7 @@ if (isset($_GET['type'])) {
             $_POST['content'],
             $_POST['categorie']
             )) {
-                header("Location:" . $domaine . "/vues/article/add.php?error=un parametre manque à la requete");
+                header("Location:" . $domaine . "/add_once.php?error=un parametre manque à la requete");
                 return;
             }
             
@@ -61,7 +61,7 @@ function insertArticle($user_id, $title, $content, $categorie) {
 
 
     if($reponse) {
-        header("location: http://localhost/blog_amelie/vue/articles/article.php");
+        header("location: http://localhost/blog_amelie/vue/articles/articles.php");
         return;
      } else {
         header("Location: http://localhost/blog_amelie/vue/articles/add.php");

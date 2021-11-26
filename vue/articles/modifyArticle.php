@@ -4,7 +4,7 @@ require_once("../../config/mysql.php");
 require_once('../../helpers/ArticlesHelper.php');
 
 if (!isset($_GET['id'])) {
-    die('Il manque un paramètre');
+    die('Il manque un paramètre ModifyArticle.php');
 }
 
 $aArticle = getArticle($_GET['id']);

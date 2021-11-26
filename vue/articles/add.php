@@ -70,7 +70,7 @@ function insertArticle($user_id, $title, $content, $categorie) {
     
     <main id="main" >     
         <div id="container">
-            <form action="../../controller/AccountController.php" method="post" id="form-control">
+            <form action="../../controller/ArticleController.php?action=add" method="post" id="form-control">  <!-- action?-->
                 <div class="mes_articles">  
                     
                     <h3> Ajouter un article </h3><br>

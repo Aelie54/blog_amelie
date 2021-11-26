@@ -1,19 +1,14 @@
 <?php
 session_start();
+//var_dump($_SESSION['user']['pseudo'] ); die();
+
 require_once("../../config/mysql.php");
 require_once('../../helpers/ArticlesHelper.php');
 
-if (!isset($_GET['id'])) {
-    die('Il manque un paramètre/Article.php');
-}
-$aArticle = getArticle($_GET['id']);
-
+$aArticles = getArticles();
 
 ?>
-
-<!doctype html>
-
-<html lang="fr">
+<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <meta name="monblog" content="articles blog">
@@ -21,14 +16,12 @@ $aArticle = getArticle($_GET['id']);
   <link rel="stylesheet" href="../../asset/style2.css">
   <script src="script.js"></script> 
   <title>Blog Poésie</title>
-</head>
+  </head>
 <body>
 
     <header><h1>Le blog Poésie d'Amélie</h1></header>
 
-
-<main id="main" >     
-
+<main id="main">
 <aside>
                 <ul>
 
@@ -54,28 +47,35 @@ $aArticle = getArticle($_GET['id']);
                 </ul> 
             </aside>
 
-            
             <div id="container">
 
-                <div class="mes_articles">
+<?php
 
-                <h2><?php echo $aArticle['title'] ;?></h2>
+if (isset($aArticles['exist'])) {
+    echo $_GET['datas']['message'];
+}
 
-                   <p> 
-                   <?php echo $aArticle['content'] ;?>
-                    </p>
-                  
-                   <?php
-                   if(isset ( $_SESSION['user']['pseudo'] )
-                   ){
-                       if($_SESSION['user']['id'] == $aArticle['user_id']){
-                           echo '<button> <a href="/blog_amelie/vue/articles/modifyArticle.php?id=' . $aArticle['id'] . '"> Modifier</a></button>';
-                        }
-                    }
-                    
-                   ?>
-                
-            </div>
+echo '<div class="mes_articles"> <h3>Liste des articles:</h3>';
+
+foreach ($aArticles as $key => $array_element) {
+
+    if($_SESSION['user']['id'] == $array_element['user_id']){
+        echo '<a href="/blog_amelie/vue/articles/article.php?id=' . $array_element['id'] . '"><br>' . $array_element["title"] . '</a>';
+    }
+}
+echo "</div>";
+
+foreach ($aArticles as $key => $array_element) {
+    if($_SESSION['user']['id'] == $array_element['user_id']){
+        echo '<div class="mes_articles"><h3>'. $array_element['title'] . '</h3><p>'. $array_element['title'] .'<br>'. $array_element['categorie'].'</p></div>';
+    }
+}
+
+?>
+</div>
+
 </main>
 
 </body>
+
+</html>

@@ -30,18 +30,26 @@
 
             <aside>
                 <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">News</a></li>
-                    <li><a href="">Contact</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="/blog_amelie/vue/account/login.php">login</a></li>
-                    <li><a href="login_once.php">login_once</a></li>
-                    <li><a href="/blog_amelie/vue/account/signup.php">Signup</a></li>
-                    <li><a href="signup_once.php">signup_once</a></li>
-                    <li><a href="add_once.php">Add_once</a></li>
-                    <li><a href="/blog_amelie/vue/articles/add.php">Add</a></li>
-                    <li><a href="/blog_amelie/vue/articles/articles.php">Articles</a></li> <!-- fonctionne pas -->
-                    <li><a href="">Log out</a></li>
+
+                    <?php 
+                    if(!isset($_SESSION['user']['pseudo'] )){
+                        echo '<li><a href="/blog_amelie/vue/account/login.php">login</a></li>' ; 
+                        echo '<li><a href="/blog_amelie/vue/account/signup.php">Signup</a></li>'; 
+                        } ?> 
+
+                    <li><a href="/blog_amelie/vue/articles/articles.php">Articles</a></li>
+                    <li><a href="/blog_amelie/">Accueil</a></li>
+                   
+                   <li><?php //var_dump($_SESSION); die();
+                    if(isset($_SESSION['user']['pseudo'] )){
+                        echo '<li><a href="/blog_amelie/vue/account/logout.php">Log out</a></li>' ; 
+                        echo '<li><a href="add_once.php">Ajouter article</a></li>';
+                        echo '<li><a href="/blog_amelie/vue/articles/mesArticles.php">Mes Articles</a></li>';
+                        } ?> 
+
+                    <li><?php //var_dump($_SESSION); die();
+                    if(isset($_SESSION['user']['pseudo'] )){
+                        echo "<div id='pseudo'>" . $_SESSION['user']['pseudo'] . "</div>" ; } ?> </li>
                 </ul> 
             </aside>
             

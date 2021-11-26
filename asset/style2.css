@@ -156,3 +156,8 @@ aside { display:none; }
 h1 { font-size: 2em; }
 
 }
+
+#pseudo { 
+    color : #30b8b8 ;
+    text-decoration: solid;
+}

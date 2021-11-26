@@ -22,8 +22,8 @@ require_once("./config/config.php"); //configuration php
             $connexion = new \PDO($dsn, $username, $password, $option);
         } catch (\PDOException $error) {
             $message = $error->getMessage();
-            var_dump($message);
-            die("Erreur lors de ma connexion PDO");
+            //var_dump($message);
+            //die("Erreur lors de ma connexion PDO");
         }
 
 //CONTROLLER
