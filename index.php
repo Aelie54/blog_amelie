@@ -25,7 +25,6 @@
             </nav>
         "-->
 
-
 <main id="main" >     
 
             <aside>
@@ -38,13 +37,15 @@
                         } ?> 
 
                     <li><a href="/blog_amelie/vue/articles/articles.php">Articles</a></li>
+                    <li><a href="/blog_amelie/vue/articles/catégories.php">Articles par catégories</a></li>
                     <li><a href="/blog_amelie/">Accueil</a></li>
                    
                    <li><?php //var_dump($_SESSION); die();
                     if(isset($_SESSION['user']['pseudo'] )){
                         echo '<li><a href="/blog_amelie/vue/account/logout.php">Log out</a></li>' ; 
                         echo '<li><a href="add_once.php">Ajouter article</a></li>';
-                        echo '<li><a href="/blog_amelie/vue/articles/mesArticles.php">Mes Articles</a></li>';
+                        echo '<li><a href="/blog_amelie/vue/articles/mesArticles.php">Mes Articles publiés</a></li>';
+                        echo '<li><a href="/blog_amelie/vue/articles/mesbrouillons.php">Mes brouillons</a></li>';
                         } ?> 
 
                     <li><?php //var_dump($_SESSION); die();

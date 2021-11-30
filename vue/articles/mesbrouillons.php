@@ -32,8 +32,8 @@ $aArticles = getArticles();
                         } ?> 
 
                     <li><a href="/blog_amelie/vue/articles/articles.php">Articles</a></li>
-                    <li><a href="/blog_amelie/">Accueil</a></li>
                     <li><a href="/blog_amelie/vue/articles/catégories.php">Articles par catégories</a></li>
+                    <li><a href="/blog_amelie/">Accueil</a></li>
                    
                    <li><?php //var_dump($_SESSION); die();
                     if(isset($_SESSION['user']['pseudo'] )){
@@ -49,25 +49,41 @@ $aArticles = getArticles();
                 </ul> 
             </aside>
 
-<div id="container">
+            <div id="container">
 
-            <?php
-            if (isset($aArticles['exist'])) {
-                echo $_GET['datas']['message'];
-            }
+<?php
 
-            echo '<div class="mes_articles"> <h3>Liste des articles:</h3>';
-            foreach ($aArticles as $key => $array_element) {
-                if($array_element['is_draft']==0){
-             echo '<a href="/blog_amelie/vue/articles/article.php?id=' . $array_element['id'] . '"><br>' . $array_element["title"] . '</a>';
-                }
-             }echo "</div>";
-           
-            foreach ($aArticles as $key => $array_element) {
-                    echo '<div class="mes_articles"><h3>'. $array_element['title'] . '</h3><p>'. $array_element['title'] .'<br>'. $array_element['categorie'].'</p></div>';
-            }
+if (isset($aArticles['exist'])) {
+    echo $_GET['datas']['message'];
+}
 
-            ?>
+echo '<div class="mes_articles"> <h3>Liste des articles:</h3>';
+
+foreach ($aArticles as $key => $array_element) {
+
+    if($_SESSION['user']['id'] == $array_element['user_id']){
+
+        if($array_element['is_draft']==1){
+
+            echo '<a href="/blog_amelie/vue/articles/article.php?id=' . $array_element['id'] . '"><br>' . $array_element["title"] . '</a>';
+
+        }
+        
+
+    }
+}
+echo "</div>";
+
+foreach ($aArticles as $key => $array_element) {
+    if($_SESSION['user']['id'] == $array_element['user_id']){
+        if($array_element['is_draft']==1){
+            echo '<div class="mes_articles"><h3>'. $array_element['title'] . '</h3><p>'. $array_element['title'] .'<br>'. $array_element['categorie'].
+            '</p></div>';
+        }
+    }
+}
+
+?>
 </div>
 
 </main>

@@ -22,9 +22,7 @@ switch ($action) {
         show();
         break;
     case 'modify':
-        
         modify();
-
         break;
     default:
         die("no action provide");
@@ -33,27 +31,38 @@ switch ($action) {
 
 
 
+
 function add()
 {
     global $domaine;
     //var_dump($domaine); die();
 
+    $is_draft =0 ;
 
-    if (!isset(
+    if(!isset(
         $_POST['user_id'],
         $_POST['title'],
         $_POST['content'],
-        $_POST['categorie'],
+        $_POST['categorie']
+        )) {
+            header("Location:" . $domaine . "/add_once.php?error=un parametre manque à la requete");
+            return;
+        }
 
-    )) {
-        redirect('Location: http://localhost/blog_amelie/vue/article/add.php?error=un_parametre_manque_à_la_requete');
-    }
-
+        if ( empty($_POST['is_draft'] ) ) {
+            $is_draft = 0;
+        }
+        
+        if ( $_POST['is_draft'] == "on") {
+            $is_draft = 1;
+            /*var_dump($is_draft); die(); */
+        }
+        
+        $isValid = 
+        checkAddParams($_POST['user_id'], $_POST['title'],  $_POST['content'], $_POST['categorie'], $is_draft);
     
-    $isValid = checkAddParams($_POST['user_id'], $_POST['title'],  $_POST['content'], $_POST['categorie']);
-    //var_dump($isValid); die();
-
 }
+
 
 
 
@@ -62,6 +71,8 @@ function show()
     global $domaine;
     redirect('Location: http://localhost/blog_amelie/vue/articles/articles.php');
 }
+
+
 
 
 
@@ -77,55 +88,17 @@ function modify()
         redirect('Location: http://localhost/blog_amelie/vue/articles/modifyArticle.php?id='. $_POST['article_id']);
     }
 
-
-
     if (isset($_POST['article_id'], $_POST['title'], $_POST['content'])) {
-        $isModify = modifyArticle($_POST['article_id'], $_POST['title'], $_POST['content'], $_SESSION['user']['id']);
-       
-        ///var_dump($isModify); die();
+        $is_draft = 0 ;
+        $isModify = 
+        modifyArticle($_POST['article_id'], $_POST['title'], $_POST['content'], $_SESSION['user']['id'], $is_draft);
+        /*var_dump($isModify); die();*/
 
         if (!$isModify['exist']) {
-            
             redirect('http://localhost/blog_amelie/vue/articles/article.php?id='. $_POST['article_id']);
-            
         }
     }
 
-    redirect( 'http://localhost/blog_amelie/vue/articles/articles.php');
+    redirect('http://localhost/blog_amelie/vue/articles/articles.php');
 
 }
-
-
-function checkAddParams($user_id, $title, $content, $categorie) {
-    global $error;
-    $user_id =  htmlspecialchars(strip_tags($user_id));
-    $title =  htmlspecialchars(strip_tags($title));
-    $content =  htmlspecialchars(strip_tags($content));
-    $categorie =  htmlspecialchars(strip_tags($categorie));
-
-    if ( empty($user_id) || empty($title) ||  empty($content) || empty($categorie)) {
-        $error["message"] .= "Veuillez remplir tous les champs. Merci ! </br>";
-        $error["exist"] = true;
-
-        return $error;
-    }
-
-    insertArticle($user_id, $title, $content, $categorie);
-}
-
-function insertArticle($user_id, $title, $content, $categorie) {
-    global $connexion;
-    global $domaine;
-    $query = $connexion->prepare("INSERT INTO `article` (`title`, `content`, `user_id`) VALUES (:title, :content, :user_id) ");
-    $reponse = $query->execute(['title' => $title, 'content' => $content, 'user_id' => $user_id]);
-
-    if($reponse) {
-       header("location: http://localhost/blog_amelie/vue/articles/article.php");
-       return;
-    } else {
-        header("Location: http://localhost/blog_amelie/vue/articles/add.php ");
-        return;
-    }
-}
-
-

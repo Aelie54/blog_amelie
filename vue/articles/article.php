@@ -6,7 +6,7 @@ require_once('../../helpers/ArticlesHelper.php');
 if (!isset($_GET['id'])) {
     die('Il manque un paramètre/Article.php');
 }
-$aArticle = getArticle($_GET['id']);
+$aArticle = getArticle($_GET['id']); 
 
 
 ?>
@@ -45,7 +45,8 @@ $aArticle = getArticle($_GET['id']);
                     if(isset($_SESSION['user']['pseudo'] )){
                         echo '<li><a href="/blog_amelie/vue/account/logout.php">Log out</a></li>' ; 
                         echo '<li><a href="add_once.php">Ajouter article</a></li>';
-                        echo '<li><a href="/blog_amelie/vue/articles/mesArticles.php">Mes Articles</a></li>';
+                        echo '<li><a href="/blog_amelie/vue/articles/mesArticles.php">Mes Articles publiés</a></li>';
+                        echo '<li><a href="/blog_amelie/vue/articles/mesbrouillons.php">Mes brouillons</a></li>';
                         } ?> 
 
                     <li><?php //var_dump($_SESSION); die();
@@ -78,4 +79,4 @@ $aArticle = getArticle($_GET['id']);
             </div>
 </main>
 
-</body>
+</body> 

@@ -16,6 +16,9 @@ if (isset($_GET['type'])) {
     
     
     if ($_GET['type'] === "add") {
+    
+        $is_draft =0 ;
+
         if(!isset(
             $_POST['user_id'],
             $_POST['title'],
@@ -25,20 +28,30 @@ if (isset($_GET['type'])) {
                 header("Location:" . $domaine . "/add_once.php?error=un parametre manque à la requete");
                 return;
             }
+
+            if ( empty($_POST['is_draft'] ) ) {
+                $is_draft = 0;
+            }
             
-            $isValid = checkAddParams($_POST['user_id'], $_POST['title'],  $_POST['content'], $_POST['categorie']);
+            if ( $_POST['is_draft'] == "on") {
+                $is_draft = 1;
+                /*var_dump($is_draft); die(); */
+            }
+            
+            $isValid = checkAddParams($_POST['user_id'], $_POST['title'],  $_POST['content'], $_POST['categorie'], $is_draft);
         
         }
 }   
 
 //MODEL
-function checkAddParams($user_id, $title, $content, $categorie) {
+function checkAddParams($user_id, $title, $content, $categorie, $is_draft) {
     global $error;
 
     $user_id =  htmlspecialchars(strip_tags($user_id));
     $title =  htmlspecialchars(strip_tags($title));
     $content =  htmlspecialchars(strip_tags($content));
     $categorie =  htmlspecialchars(strip_tags($categorie));
+    $is_draft =  htmlspecialchars(strip_tags($is_draft));
 
 
     if ( empty($user_id) || empty($title) ||  empty($content) || empty($categorie)) {
@@ -48,16 +61,16 @@ function checkAddParams($user_id, $title, $content, $categorie) {
         return $error;
     }
 
-    insertArticle($user_id, $title, $content, $categorie);
+    insertArticle($user_id, $title, $content, $categorie, $is_draft);
     
 }
 
 
-function insertArticle($user_id, $title, $content, $categorie) {
+function insertArticle($user_id, $title, $content, $categorie, $is_draft) {
     global $connexion;
     global $domaine;
-    $query = $connexion->prepare("INSERT INTO `article` (`title`, `content`, `user_id`, `categorie`) VALUES (:title, :content, :user_id, :categorie);");
-    $reponse = $query->execute(['title' => $title, 'content' => $content, 'user_id' => $user_id, 'categorie' => $categorie ]);
+    $query = $connexion->prepare("INSERT INTO `article` (`title`, `content`, `user_id`, `categorie`, `is_draft`) VALUES (:title, :content, :user_id, :categorie, :is_draft)");
+    $reponse = $query->execute(['title' => $title, 'content' => $content, 'user_id' => $user_id, 'categorie' => $categorie,  'is_draft' => $is_draft]);
 
 
     if($reponse) {
@@ -68,6 +81,8 @@ function insertArticle($user_id, $title, $content, $categorie) {
         return;
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -103,8 +118,17 @@ function insertArticle($user_id, $title, $content, $categorie) {
                             <option value="1">Héros</option>
                             <option value="2">Avengers</option>
                             <option value="3">Méchants</option>
-                        </select>
+                        </select><br><br>
                     </div>
+                    
+
+                        <!-- brouillon? -->
+                        <div>
+                            <label name="is_draft">Brouillon - en cours de rédaction</label>
+                            <input type="checkbox" name="is_draft" id="is_draft">
+                        </div><br>
+
+
                     <div id="login_button">
                         <input type="submit" value="Ajouter l'article" />
                     </div>
